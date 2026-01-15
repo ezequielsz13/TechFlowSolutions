@@ -8,13 +8,7 @@ init(autoreset=True)
 def limpar_tela_ope():
     os.system('cls' if os.name == "nt" else 'clear')
 
-#Visualizar todos os eventos
-def visualizar_usuarios():
-    df = pd.read_csv('lista_usuarios.csv')
-    print(f"{Fore.BLUE}Usuários do sistema: {Fore.RESET}")
-    print(df)
-
-#Cadastra um usuario novo
+#Define a variável do tipo de usuário conforme a opção do operador do sistema
 def processa_tipo_usuario():
     opcao_tipo_usuario = input(f"{Fore.GREEN}Digite a opção desejada: {Fore.RESET}")
     if opcao_tipo_usuario == "1":
@@ -25,7 +19,14 @@ def processa_tipo_usuario():
         print(f"{Fore.RED}Opção inválida! Tente novamente {Fore.RESET}")
         processa_tipo_usuario()
     return(tipo_usuario)
-    
+
+#Visualizar todos os usuários
+def visualizar_usuarios():
+    df = pd.read_csv('lista_usuarios.csv')
+    print(f"{Fore.BLUE}Usuários do sistema: {Fore.RESET}")
+    print(df)
+
+#Cadastra um usuário novo    
 def criar_usuario():
     with open("lista_usuarios.csv", "a", newline='') as arquivo_csv:
         print(f"{Fore.GREEN}Criando usuário novo... Não use acentos! {Fore.RESET}")
@@ -38,3 +39,16 @@ def criar_usuario():
         add = csv.writer(arquivo_csv)
         add.writerow([nome_usuario, senha_usuario, tipo_usuario])
         print(f"{Fore.GREEN}Usuário {nome_usuario} foi adicionado! {Fore.RESET}")
+
+
+def apagar_usuario():
+    df = pd.read_csv('lista_usuarios.csv')
+    print(f"{Fore.GREEN}Usuários do sistema: {Fore.RESET}")
+    print(df)
+    excluir_item = int(input(f"{Fore.GREEN}Digite o número do usuário que deseja apagar: {Fore.RESET}"))
+    nome_usuario = df.loc[excluir_item, 'Usuario']
+    novo_df = df.copy()
+    novo_df.drop([excluir_item], axis = 0, inplace = True)
+    limpar_tela_ope()
+    print(f"{Fore.GREEN}Usuário {nome_usuario} foi apagado! {Fore.RESET}")
+    novo_df.to_csv('lista_usuarios.csv', index=False)
