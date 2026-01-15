@@ -36,4 +36,4 @@ def sistema_usuarios():
     limpar_tela()
     processar_opcao(opcao)
 
-    sistema_usuarios()
+sistema_usuarios()
