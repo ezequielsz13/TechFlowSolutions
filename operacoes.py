@@ -80,3 +80,14 @@ def editar_usuario():
     adicionar_usuarios_atualizar(nome_usuario, senha_usuario, tipo_usuario)
     print(f"{Fore.GREEN}Usuário {nome_usuario} atualizado! {Fore.RESET}")
 
+#Valida autenticação
+'''def valida_autenticacao(login, senha):
+    df_usuarios = pd.read_csv('lista_usuarios.csv')
+    usuarios = set(df_usuarios['Usuario'])
+    if login in usuarios:
+        cadastro = df_usuarios.loc[df_usuarios['Usuario'] == login]
+        senha_usuario = set(cadastro['Senha'])
+        if senha == senha_usuario:
+            return(True)
+    else:
+        return(False)'''

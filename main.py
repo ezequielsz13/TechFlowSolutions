@@ -1,5 +1,5 @@
 import os
-from operacoes import visualizar_usuarios, criar_usuario, apagar_usuario, editar_usuario
+from operacoes import visualizar_usuarios, criar_usuario, apagar_usuario, editar_usuario#, valida_autenticacao
 from colorama import init, Fore, Back 
 init(autoreset=True)
 
@@ -40,5 +40,17 @@ def sistema_usuarios():
     pausar()
     sistema_usuarios()
 
+'''def autentica_usuario():
+    limpar_tela()   
+    print(f"{Fore.BLUE}Autentique-se para acessar o sistema {Fore.RESET}")
+    login = input(f"{Fore.BLUE}Usuário: {Fore.RESET}")
+    senha = str(input(f"{Fore.BLUE}Senha: {Fore.RESET}"))
+    valida_autenticacao(login, senha)
+    if valida_autenticacao == True:
+        sistema_usuarios()
+    else:
+        print(f"{Fore.RED}Acesso negado! Verifique usuário e senha ou se você tem autorização para acessar o sistema.{Fore.RESET}")
+        pausar()
+        exit()'''
 
 sistema_usuarios()
