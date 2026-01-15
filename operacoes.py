@@ -52,3 +52,31 @@ def apagar_usuario():
     limpar_tela_ope()
     print(f"{Fore.GREEN}Usuário {nome_usuario} foi apagado! {Fore.RESET}")
     novo_df.to_csv('lista_usuarios.csv', index=False)
+
+#Atualiza um usuário
+def adicionar_usuarios_atualizar(nome_usuario, senha_usuario, tipo_usuario):
+    with open("lista_usuarios.csv", "a", newline='') as arquivo_csv:
+        add = csv.writer(arquivo_csv)
+        add.writerow([nome_usuario, senha_usuario, tipo_usuario])
+
+def editar_usuario():
+    df = pd.read_csv('lista_usuarios.csv')
+    print(f"{Fore.GREEN}Usuários do sistema: {Fore.RESET}")
+    print(df)
+    editar_usuario = int(input(f"{Fore.GREEN}Digite o número do usuário que deseja editar: {Fore.RESET}"))
+    item_df = df.loc[editar_usuario]
+    limpar_tela_ope()
+    print(f"{Fore.GREEN}Você selecionou: {Fore.RESET}")
+    print(item_df)
+    nome_usuario = df.loc[editar_usuario, 'Usuario']
+    senha_usuario = input(f"{Fore.MAGENTA}Qual a nova senha para {nome_usuario}? {Fore.RESET}")
+    print(f"{Fore.MAGENTA}O usuário {nome_usuario} é 'admin' ou 'colaborador'? {Fore.RESET}")
+    print("1 - Admin")
+    print("2 - Colaborador")
+    tipo_usuario = processa_tipo_usuario()
+    novo_df = df.copy()
+    novo_df.drop([editar_usuario], axis = 0, inplace = True)
+    novo_df.to_csv('lista_usuarios.csv', index=False)
+    adicionar_usuarios_atualizar(nome_usuario, senha_usuario, tipo_usuario)
+    print(f"{Fore.GREEN}Usuário {nome_usuario} atualizado! {Fore.RESET}")
+
