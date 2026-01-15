@@ -1,5 +1,5 @@
 import os
-from operacoes import visualizar_usuarios
+from operacoes import visualizar_usuarios, criar_usuario
 from colorama import init, Fore, Back 
 init(autoreset=True)
 
