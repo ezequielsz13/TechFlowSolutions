@@ -1,4 +1,5 @@
 import os
+from operacoes import visualizar_usuarios
 from colorama import init, Fore, Back 
 init(autoreset=True)
 
@@ -31,9 +32,13 @@ def processar_opcao(opcao):
         exit()
 
 def sistema_usuarios():
+    limpar_tela()
     menu_principal()
-    opcao = input(f"{Fore.GREEN}Digite o número da opção e tecle ENTER: {Fore.RESET}")
+    opcao = input(f"{Fore.BLUE}Digite o número da opção desejada e tecle ENTER: {Fore.RESET}")
     limpar_tela()
     processar_opcao(opcao)
+    pausar()
+    sistema_usuarios()
+
 
 sistema_usuarios()
