@@ -18,7 +18,7 @@ def menu_principal():
     print(f"4 - Apagar um usuário")
     print(f"0 - Sair do sistema")
 
-def processar_opcao_estudante(opcao):
+def processar_opcao(opcao):
     if opcao == "1":
         visualizar_usuarios()
     if opcao == "2":
@@ -29,3 +29,11 @@ def processar_opcao_estudante(opcao):
         apagar_usuario()
     if opcao == "0":
         exit()
+
+def sistema_usuarios():
+    menu_principal()
+    opcao = input(f"{Fore.GREEN}Digite o número da opção e tecle ENTER: {Fore.RESET}")
+    limpar_tela()
+    processar_opcao(opcao)
+
+    sistema_usuarios()
